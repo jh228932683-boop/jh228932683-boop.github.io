@@ -123,21 +123,21 @@
     section {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 120px 32px 100px;
+      padding: 80px 32px 60px;
     }
 
     .section-title {
       font-size: 28px;
       font-weight: 600;
       letter-spacing: -0.3px;
-      margin-bottom: 48px;
+      margin-bottom: 36px;
       color: #1d1d1f;
     }
 
     /* ===== Hero 区域 ===== */
     #hero {
-      padding-top: 180px;
-      padding-bottom: 120px;
+      padding-top: 160px;
+      padding-bottom: 80px;
       text-align: center;
     }
 
@@ -149,7 +149,7 @@
       background-color: #f0f0f0;
       padding: 6px 16px;
       border-radius: 20px;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
       letter-spacing: 0.5px;
     }
 
@@ -160,6 +160,20 @@
       line-height: 1.15;
       margin-bottom: 24px;
       color: #1d1d1f;
+      min-height: 1.2em;
+    }
+
+    /* 打字机光标 */
+    #hero-title.typing::after {
+      content: '|';
+      animation: blink 0.8s step-end infinite;
+      font-weight: 300;
+      color: #1d1d1f;
+      margin-left: 2px;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
     }
 
     #hero p {
@@ -174,42 +188,123 @@
       width: 40px;
       height: 3px;
       background-color: #1d1d1f;
-      margin: 32px auto 0;
+      margin: 28px auto 0;
       border-radius: 2px;
     }
 
-    /* ===== 关于我 ===== */
+    /* ===== 关于我（左右两栏） ===== */
     #about {
       background-color: #FFFFFF;
       border-radius: 24px;
       margin-left: 32px;
       margin-right: 32px;
-      padding: 80px 64px;
+      padding: 60px 56px;
     }
 
-    #about p {
+    .about-content {
+      display: flex;
+      gap: 48px;
+      align-items: flex-start;
+    }
+
+    .about-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .about-text p {
       font-size: 17px;
       color: #515154;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       max-width: 720px;
       line-height: 1.9;
     }
 
-    #about p:last-child {
+    .about-text p:last-child {
       margin-bottom: 0;
     }
 
-    /* ===== 项目展示 ===== */
+    .about-skills {
+      flex-shrink: 0;
+      width: 220px;
+      background-color: #f5f5f7;
+      border-radius: 16px;
+      padding: 24px 20px;
+    }
+
+    .about-skills h3 {
+      font-size: 13px;
+      color: #86868b;
+      margin-bottom: 14px;
+      letter-spacing: 0.8px;
+      font-weight: 600;
+    }
+
+    .skills-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skills-tags span {
+      font-size: 13px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background-color: #FFFFFF;
+      color: #1d1d1f;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      font-weight: 500;
+    }
+
+    /* ===== 数据亮点 ===== */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .stat-item {
+      background: #FFFFFF;
+      border-radius: 16px;
+      padding: 24px 16px;
+      text-align: center;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .stat-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .stat-number {
+      display: block;
+      font-size: 34px;
+      font-weight: 700;
+      color: #1d1d1f;
+      margin-bottom: 4px;
+      letter-spacing: -0.5px;
+    }
+
+    .stat-label {
+      display: block;
+      font-size: 13px;
+      color: #86868b;
+      line-height: 1.4;
+    }
+
+    /* ===== 项目展示（三列） ===== */
     .project-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 28px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
     }
 
     .project-card {
       background: #FFFFFF;
       border-radius: 20px;
-      padding: 36px;
+      padding: 28px;
       border: 1px solid rgba(0, 0, 0, 0.06);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       display: flex;
@@ -224,36 +319,36 @@
     .project-meta {
       font-size: 12px;
       color: #a1a1a6;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       letter-spacing: 0.3px;
     }
 
     .project-card h3 {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 600;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
       color: #1d1d1f;
       line-height: 1.4;
     }
 
     .project-card p {
-      font-size: 15px;
+      font-size: 14px;
       color: #86868b;
       line-height: 1.8;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       flex: 1;
     }
 
     .project-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 6px;
       margin-top: auto;
     }
 
     .project-tags span {
       font-size: 12px;
-      padding: 5px 14px;
+      padding: 4px 12px;
       border-radius: 20px;
       background-color: #f0f0f0;
       color: #515154;
@@ -261,23 +356,25 @@
 
     /* ===== 联系方式 ===== */
     #contact {
-      padding-bottom: 80px;
+      padding-bottom: 60px;
     }
 
     #contact .contact-card {
       background: #FFFFFF;
       border-radius: 20px;
-      padding: 48px 56px;
+      padding: 36px 48px;
       border: 1px solid rgba(0, 0, 0, 0.06);
-      display: inline-flex;
-      gap: 48px;
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
       flex-wrap: wrap;
+      width: 100%;
     }
 
     .contact-item {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 4px;
     }
 
     .contact-item .label {
@@ -293,10 +390,20 @@
       font-weight: 500;
     }
 
+    .contact-item .value a {
+      color: #1d1d1f;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .contact-item .value a:hover {
+      color: #0071e3;
+    }
+
     /* ===== 页脚 ===== */
     footer {
       text-align: center;
-      padding: 40px 24px;
+      padding: 32px 24px;
       border-top: 1px solid rgba(0, 0, 0, 0.06);
       color: #86868b;
       font-size: 13px;
@@ -360,12 +467,12 @@
       }
 
       section {
-        padding: 80px 20px 60px;
+        padding: 60px 20px 40px;
       }
 
       #hero {
-        padding-top: 120px;
-        padding-bottom: 80px;
+        padding-top: 110px;
+        padding-bottom: 60px;
       }
 
       #hero h1 {
@@ -376,31 +483,68 @@
         font-size: 17px;
       }
 
+      /* 关于我在手机端上下堆叠 */
       #about {
         margin-left: 0;
         margin-right: 0;
-        padding: 40px 28px;
+        padding: 32px 24px;
         border-radius: 16px;
+      }
+
+      .about-content {
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .about-skills {
+        width: 100%;
       }
 
       .section-title {
         font-size: 24px;
-        margin-bottom: 32px;
+        margin-bottom: 28px;
       }
 
+      /* 数据亮点手机端 2×2 */
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-bottom: 28px;
+      }
+
+      .stat-item {
+        padding: 20px 12px;
+      }
+
+      .stat-number {
+        font-size: 28px;
+      }
+
+      /* 项目卡片手机端单列 */
       .project-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 16px;
       }
 
       .project-card {
-        padding: 28px;
+        padding: 24px;
       }
 
       #contact .contact-card {
-        padding: 32px 28px;
-        gap: 28px;
-        width: 100%;
+        padding: 28px 24px;
+        gap: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 480px) {
+      #hero h1 {
+        font-size: 28px;
+      }
+
+      .stat-number {
+        font-size: 24px;
       }
     }
   </style>
@@ -427,28 +571,65 @@
   <!-- ===== Hero 区域 ===== -->
   <section id="hero">
     <div class="hero-badge fade-in">AI 产品经理 · 2026 届</div>
-    <h1 class="fade-in">你好，我是李景晖</h1>
+    <h1 class="fade-in" id="hero-title">你好，我是李景晖</h1>
     <p class="fade-in">致力于打通大模型落地的"最后一公里"，<br>将前沿 AI 技术转化为真实的业务增量。</p>
     <div class="hero-divider fade-in"></div>
   </section>
 
-  <!-- ===== 关于我 ===== -->
+  <!-- ===== 关于我（左右两栏） ===== -->
   <section id="about">
     <h2 class="section-title fade-in">关于我</h2>
-    <p class="fade-in">
-      我是一名 AI 产品经理，目前就读于河南大学（双一流），主修国际经济与贸易，同时修读法学双学位，将于 2026 年毕业。具备极强的 AI 自驱学习力与技术嗅觉，自学 Python 并深入理解 AI 工程化底层逻辑。
-    </p>
-    <p class="fade-in">
-      熟悉 RAG、Agent 构建、模型微调与评估、提示词工程等全链路技术，擅长准确把握大模型的智力边界，能将前沿 AI 技术转化为切实解决业务痛点、提升运营效率的产品方案。
-    </p>
-    <p class="fade-in">
-      不盲目堆砌技术，始终以核心业务数据为导向。期待能将对 AI 技术的热忱转化为真实的业务增量，打通大模型落地的"最后一公里"。
-    </p>
+    <div class="about-content fade-in">
+      <div class="about-text">
+        <p>
+          我是一名 AI 产品经理，目前就读于河南大学（双一流），主修国际经济与贸易，同时修读法学双学位，将于 2026 年毕业。具备极强的 AI 自驱学习力与技术嗅觉，自学 Python 并深入理解 AI 工程化底层逻辑。
+        </p>
+        <p>
+          熟悉 RAG、Agent 构建、模型微调与评估、提示词工程等全链路技术，擅长准确把握大模型的智力边界，能将前沿 AI 技术转化为切实解决业务痛点、提升运营效率的产品方案。
+        </p>
+        <p>
+          不盲目堆砌技术，始终以核心业务数据为导向。期待能将对 AI 技术的热忱转化为真实的业务增量，打通大模型落地的"最后一公里"。
+        </p>
+      </div>
+      <div class="about-skills">
+        <h3>核心技能</h3>
+        <div class="skills-tags">
+          <span>RAG</span>
+          <span>Agent 构建</span>
+          <span>Prompt Engineering</span>
+          <span>模型微调与评估</span>
+          <span>Python</span>
+          <span>数据分析</span>
+          <span>BI 自动化</span>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- ===== 项目展示 ===== -->
   <section id="projects">
     <h2 class="section-title fade-in">项目</h2>
+
+    <!-- 数据亮点 -->
+    <div class="stats-grid fade-in">
+      <div class="stat-item">
+        <span class="stat-number">3000+</span>
+        <span class="stat-label">高质量数据集</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">90%+</span>
+        <span class="stat-label">知识召回率</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">85%+</span>
+        <span class="stat-label">任务调度成功率</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">100%</span>
+        <span class="stat-label">人工处理效率提升</span>
+      </div>
+    </div>
+
     <div class="project-grid">
       <div class="project-card fade-in">
         <div class="project-meta">新东方科技教育集团 · 2026.02 — 2026.04</div>
@@ -498,6 +679,12 @@
         <span class="label">微信</span>
         <span class="value">JHA0525</span>
       </div>
+      <div class="contact-item">
+        <span class="label">GitHub</span>
+        <span class="value">
+          <a href="https://github.com/jh228932683-boop" target="_blank" rel="noopener noreferrer">jh228932683-boop</a>
+        </span>
+      </div>
     </div>
   </section>
 
@@ -523,6 +710,27 @@
         menuToggle.classList.remove('active');
       });
     });
+
+    // ===== 打字机动画 =====
+    (function typewriter() {
+      const title = document.getElementById('hero-title');
+      const text = title.textContent;
+      title.textContent = '';
+      title.classList.add('typing');
+
+      let i = 0;
+      function typeNext() {
+        if (i < text.length) {
+          title.textContent += text[i];
+          i++;
+          setTimeout(typeNext, 80 + Math.random() * 40);
+        } else {
+          title.classList.remove('typing');
+        }
+      }
+
+      setTimeout(typeNext, 500);
+    })();
 
     // ===== 滚动触发 fade-in 动画 =====
     const fadeElements = document.querySelectorAll('.fade-in');
