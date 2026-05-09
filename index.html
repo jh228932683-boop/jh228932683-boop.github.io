@@ -196,8 +196,6 @@
     #about {
       background-color: #FFFFFF;
       border-radius: 24px;
-      margin-left: 32px;
-      margin-right: 32px;
       padding: 60px 56px;
     }
 
@@ -205,11 +203,13 @@
       display: flex;
       gap: 48px;
       align-items: flex-start;
+      justify-content: center;
     }
 
     .about-text {
       flex: 1;
       min-width: 0;
+      max-width: 640px;
     }
 
     .about-text p {
@@ -554,7 +554,6 @@
   <!-- ===== 顶部导航 ===== -->
   <header>
     <nav>
-      <a href="#hero" class="nav-logo">李景晖</a>
       <button class="menu-toggle" id="menuToggle" aria-label="打开菜单">
         <span></span>
         <span></span>
@@ -570,9 +569,9 @@
 
   <!-- ===== Hero 区域 ===== -->
   <section id="hero">
-    <div class="hero-badge fade-in">AI 产品经理 · 2026 届</div>
+    <div class="hero-badge fade-in">AI 产品经理</div>
     <h1 class="fade-in" id="hero-title">你好，我是李景晖</h1>
-    <p class="fade-in">致力于打通大模型落地的"最后一公里"，<br>将前沿 AI 技术转化为真实的业务增量。</p>
+    <p class="fade-in">致力于打通大模型落地的最后一公里<br>将前沿 AI 技术转化为真实的业务增量</p>
     <div class="hero-divider fade-in"></div>
   </section>
 
