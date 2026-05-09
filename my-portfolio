@@ -1,0 +1,16 @@
+cd ~/Desktop/my-portfolio
+
+# 初始化 git
+git init
+
+# 添加所有文件
+git add .
+
+# 提交
+git commit -m "第一次发布个人主页"
+
+# 连接到你的 GitHub 仓库（把链接换成你自己的）
+git remote add origin https://github.com/你的用户名/你的用户名.github.io.git
+
+# 推送上去
+git push -u origin main
