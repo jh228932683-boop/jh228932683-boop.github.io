@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>李景晖 - 个人主页</title>
+  <style>
+    /* ===== 基础重置与全局样式 ===== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', 'Microsoft YaHei', sans-serif;
+      background-color: #FAFAFA;
+      color: #1d1d1f;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ===== 导航栏 ===== */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background-color: rgba(250, 250, 250, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 32px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      text-decoration: none;
+      color: #1d1d1f;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      color: #515154;
+      text-decoration: none;
+      transition: color 0.2s ease;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background-color: #1d1d1f;
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: #1d1d1f;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* 汉堡菜单按钮 */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background-color: #1d1d1f;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* ===== 通用区块 ===== */
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 120px 32px 100px;
+    }
+
+    .section-title {
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      margin-bottom: 48px;
+      color: #1d1d1f;
+    }
+
+    /* ===== Hero 区域 ===== */
+    #hero {
+      padding-top: 180px;
+      padding-bottom: 120px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 500;
+      color: #86868b;
+      background-color: #f0f0f0;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+      letter-spacing: 0.5px;
+    }
+
+    #hero h1 {
+      font-size: 52px;
+      font-weight: 700;
+      letter-spacing: -0.8px;
+      line-height: 1.15;
+      margin-bottom: 24px;
+      color: #1d1d1f;
+    }
+
+    #hero p {
+      font-size: 20px;
+      color: #86868b;
+      max-width: 580px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .hero-divider {
+      width: 40px;
+      height: 3px;
+      background-color: #1d1d1f;
+      margin: 32px auto 0;
+      border-radius: 2px;
+    }
+
+    /* ===== 关于我 ===== */
+    #about {
+      background-color: #FFFFFF;
+      border-radius: 24px;
+      margin-left: 32px;
+      margin-right: 32px;
+      padding: 80px 64px;
+    }
+
+    #about p {
+      font-size: 17px;
+      color: #515154;
+      margin-bottom: 24px;
+      max-width: 720px;
+      line-height: 1.9;
+    }
+
+    #about p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ===== 项目展示 ===== */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 28px;
+    }
+
+    .project-card {
+      background: #FFFFFF;
+      border-radius: 20px;
+      padding: 36px;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
+    }
+
+    .project-meta {
+      font-size: 12px;
+      color: #a1a1a6;
+      margin-bottom: 8px;
+      letter-spacing: 0.3px;
+    }
+
+    .project-card h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: #1d1d1f;
+      line-height: 1.4;
+    }
+
+    .project-card p {
+      font-size: 15px;
+      color: #86868b;
+      line-height: 1.8;
+      margin-bottom: 24px;
+      flex: 1;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: auto;
+    }
+
+    .project-tags span {
+      font-size: 12px;
+      padding: 5px 14px;
+      border-radius: 20px;
+      background-color: #f0f0f0;
+      color: #515154;
+    }
+
+    /* ===== 联系方式 ===== */
+    #contact {
+      padding-bottom: 80px;
+    }
+
+    #contact .contact-card {
+      background: #FFFFFF;
+      border-radius: 20px;
+      padding: 48px 56px;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      display: inline-flex;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .contact-item .label {
+      font-size: 12px;
+      color: #a1a1a6;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .contact-item .value {
+      font-size: 16px;
+      color: #1d1d1f;
+      font-weight: 500;
+    }
+
+    /* ===== 页脚 ===== */
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+      color: #86868b;
+      font-size: 13px;
+    }
+
+    /* ===== 滚动动画 (fade-in) ===== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== 响应式设计 ===== */
+    @media (max-width: 768px) {
+      nav {
+        height: 48px;
+        padding: 0 20px;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 48px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background-color: rgba(250, 250, 250, 0.98);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        padding: 16px 20px;
+        gap: 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        display: none;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 14px 0;
+        font-size: 16px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      }
+
+      .nav-links a::after {
+        display: none;
+      }
+
+      .nav-links a:last-child {
+        border-bottom: none;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      section {
+        padding: 80px 20px 60px;
+      }
+
+      #hero {
+        padding-top: 120px;
+        padding-bottom: 80px;
+      }
+
+      #hero h1 {
+        font-size: 32px;
+      }
+
+      #hero p {
+        font-size: 17px;
+      }
+
+      #about {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 40px 28px;
+        border-radius: 16px;
+      }
+
+      .section-title {
+        font-size: 24px;
+        margin-bottom: 32px;
+      }
+
+      .project-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .project-card {
+        padding: 28px;
+      }
+
+      #contact .contact-card {
+        padding: 32px 28px;
+        gap: 28px;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== 顶部导航 ===== -->
+  <header>
+    <nav>
+      <a href="#hero" class="nav-logo">李景晖</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="打开菜单">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">关于</a></li>
+        <li><a href="#projects">项目</a></li>
+        <li><a href="#contact">联系</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== Hero 区域 ===== -->
+  <section id="hero">
+    <div class="hero-badge fade-in">AI 产品经理 · 2026 届</div>
+    <h1 class="fade-in">你好，我是李景晖</h1>
+    <p class="fade-in">致力于打通大模型落地的"最后一公里"，<br>将前沿 AI 技术转化为真实的业务增量。</p>
+    <div class="hero-divider fade-in"></div>
+  </section>
+
+  <!-- ===== 关于我 ===== -->
+  <section id="about">
+    <h2 class="section-title fade-in">关于我</h2>
+    <p class="fade-in">
+      我是一名 AI 产品经理，目前就读于河南大学（双一流），主修国际经济与贸易，同时修读法学双学位，将于 2026 年毕业。具备极强的 AI 自驱学习力与技术嗅觉，自学 Python 并深入理解 AI 工程化底层逻辑。
+    </p>
+    <p class="fade-in">
+      熟悉 RAG、Agent 构建、模型微调与评估、提示词工程等全链路技术，擅长准确把握大模型的智力边界，能将前沿 AI 技术转化为切实解决业务痛点、提升运营效率的产品方案。
+    </p>
+    <p class="fade-in">
+      不盲目堆砌技术，始终以核心业务数据为导向。期待能将对 AI 技术的热忱转化为真实的业务增量，打通大模型落地的"最后一公里"。
+    </p>
+  </section>
+
+  <!-- ===== 项目展示 ===== -->
+  <section id="projects">
+    <h2 class="section-title fade-in">项目</h2>
+    <div class="project-grid">
+      <div class="project-card fade-in">
+        <div class="project-meta">新东方科技教育集团 · 2026.02 — 2026.04</div>
+        <h3>AI Agent 落地与教育场景应用</h3>
+        <p>参与教育场景下 AI Agent 从 0 到 1 的孵化。主导构建 3000+ 高质量评测数据集，通过精细化提示工程使核心场景业务可用率提升 20%。推动 OpenClaw 框架落地，实现"4 分钟长视频生成"与"定制化学习计划"功能，核心任务调度成功率 85%+。</p>
+        <div class="project-tags">
+          <span>AI Agent</span>
+          <span>Prompt Engineering</span>
+          <span>模型评估</span>
+          <span>OpenClaw</span>
+        </div>
+      </div>
+      <div class="project-card fade-in">
+        <div class="project-meta">高途集团 · 2025.08 — 2026.02</div>
+        <h3>RAG 智能客服与 AI 提效</h3>
+        <p>主导构建 RAG 智能客服架构，负责数据集工程与高质量语料清洗，知识召回准确率达 90%+，销售资料获取效率提升 70%+。引入多模态大模型实现票务图片自动解析，人工处理效率提升 100%。设计并上线 4 款研学产品，实现约 10% 私域转化率。</p>
+        <div class="project-tags">
+          <span>RAG</span>
+          <span>多模态</span>
+          <span>AI产品设计</span>
+          <span>BI自动化</span>
+        </div>
+      </div>
+      <div class="project-card fade-in">
+        <div class="project-meta">快手 · 2025.02 — 2025.06</div>
+        <h3>快手金币体系产品设计</h3>
+        <p>基于 RARRA 模型负责快手 APP 金币体系的产品迭代。主导设计"连续打卡得金币"等留存功能，次日留存率相较对照组提升 10%。策划"投币瓜分奖池"等游戏化活动，触达人群三日留存率提升 5%。设计 Push 权限及广告合作任务，开辟流量变现新路径。</p>
+        <div class="project-tags">
+          <span>增长产品</span>
+          <span>数据驱动</span>
+          <span>RARRA</span>
+          <span>留存策略</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 联系方式 ===== -->
+  <section id="contact">
+    <h2 class="section-title fade-in">联系方式</h2>
+    <div class="contact-card fade-in">
+      <div class="contact-item">
+        <span class="label">邮箱</span>
+        <span class="value">jh228932683@163.com</span>
+      </div>
+      <div class="contact-item">
+        <span class="label">微信</span>
+        <span class="value">JHA0525</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 页脚 ===== -->
+  <footer>
+    <p>&copy; 2026 李景晖. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // ===== 汉堡菜单切换 =====
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      menuToggle.classList.toggle('active');
+    });
+
+    // 点击导航链接后关闭菜单（手机端）
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.classList.remove('active');
+      });
+    });
+
+    // ===== 滚动触发 fade-in 动画 =====
+    const fadeElements = document.querySelectorAll('.fade-in');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    fadeElements.forEach(el => observer.observe(el));
+
+    // 页面加载时检测首屏元素
+    window.addEventListener('load', () => {
+      fadeElements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight) {
+          el.classList.add('visible');
+          observer.unobserve(el);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
